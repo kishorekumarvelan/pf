@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luxury Portfolio | Kishorekumar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+
+
+    .project-output {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      color: white;
+      display: none;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .project-output iframe {
+      width: 100%;
+      height: 480px;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 8px;
+    }
+
+    .project-output h3 {
+      color: #d3b673;
+      margin-bottom: 0.5rem;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f8f5f0;
+      color: #2c2c2c;
+    }
+
+    header {
+      background-image: url('3260660.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #f8f5f0;
+      position: relative;
+      text-align: center;
+      animation: fadeHeader 1.2s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 2fr;
+      }
+    }
+
+    @media (min-width: 500px){
+        .lux-card {
+     width: 100%;
+     height: 100%;
+    }
+    
+    
+    }
+
+    @media (max-width: 480px) {
+      .profile-img {
+        width: 140px;
+        height: 140px;
+        top: 10px;
+        right: 10px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .lux-card h3 {
+        font-size: 1.5rem;
+      }
+
+      .lux-card p {
+        font-size: 0.9rem;
+      }
+    }
+
+    @keyframes fadeHeader {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    header > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .profile-img {
+      position: absolute;
+      top: 100px;
+      right: 40px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #d3b673;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    nav {
+      position: fixed;
+      top: 0px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      gap: 50px;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    nav a {
+      color: #d3b673;
+      text-decoration: none;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 1.5rem;
+      padding-bottom: 5px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #ffffff;
+      
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #d3b673;
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 6rem 1.5rem 4rem;
+      border-bottom: 1px solid #e0dcdc;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #444;
+      text-align: justify;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .skill-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(211, 182, 115, 0.1));
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(12px);
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #d3b673;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      transform: scale(0.95);
+      opacity: 0;
+    }
+
+    .skill-card.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .skill-card:hover {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(0, 0, 0, 0.6));
+      box-shadow: 0 12px 40px rgba(255, 215, 0, 0.3);
+      transform: scale(1.05) rotate(1deg);
+      border-color: rgba(211, 182, 115, 0.5);
+      cursor: pointer;
+    }
+
+    section#projects {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section#projects h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    
+
+     .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+      gap: 2rem;
+    }
+
+    .lux-card {
+      backdrop-filter: blur(14px);
+     /* background: linear-gradient(145deg, rgba(211,182,115,0.1), rgba(0,0,0,0.7));*/
+     background: #545454;
+     
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border-radius: 20px;
+      padding: 4rem;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .lux-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, transparent, #d3b673, transparent);
+      transform: rotate(45deg);
+      opacity: 0;
+      z-index: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .lux-card:hover::before {
+      opacity: 0.2;
+    }
+
+    .lux-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 15px 50px rgba(211, 182, 115, 0.3);
+      border-color: rgba(211, 182, 115, 0.3);
+    }
+
+    .lux-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #d3b673;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lux-card p {
+      font-size: 1rem;
+      line-height: 1.6;
+      text-align: justify;
+      color: #e0e0e0;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: #ccc;
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+    }
+
+    .contact-info {
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .profile-img {
+        width: 180px;
+        height: 180px;
+        top: 50px;
+        right: 10px;
+      }
+
+      nav {
+        flex-direction: row;
+        gap: 20px;
+        padding: 0.5rem 1rem;
+      }
+
+      nav a {
+        font-size: 1.2rem;
+      }
+    }
+
+    
+
+    @media (max-width: 480px) {
+      .profile-img {
+        width: 140px;
+        height: 140px;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .lux-card h3 {
+        font-size: 1.5rem;
+      }
+
+      .lux-card p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header>
+    <img src="Pi7_profile.jpg" alt="Your Image" class="profile-img" />
+    <h1>Kishorekumar</h1>
+    <p>Unity AR and VR Developer</p>
+  </header>
+
+  <section class="section" id="about">
+    <h2>About Me</h2>
+    <p>
+      Kishore Kumar V is a Computer Science undergraduate from Salem, graduating in 2026, with a strong passion for immersive technologies and game development. Specializing in Unity, he has developed notable projects such as Titanic Hijacked, a third-person adventure game, and FaceTune, an AI-powered emotion-based music player built using Unity and Flask. He has also created full-stack applications like MealMate and a Task Management Tool using React, Node.js, and MongoDB, showcasing his web development skills. A 3-month VR Developer internship at Nitinnov Tech allowed him to work on five collaborative projects, further strengthening his expertise in AR/VR. With a mix of technical and creative skills, Kishore is driven to build engaging digital experiences.
+    </p>
+  </section>
+
+  <section class="section" id="skills">
+    <h2>Skills</h2>
+    <p>Here are the core technologies and tools I specialize in:</p>
+    <div class="skills-grid">
+      <div class="skill-card"><h3>Unity</h3></div>
+      <div class="skill-card"><h3>Blender</h3></div>
+      <div class="skill-card"><h3>Photoshop</h3></div>
+      <div class="skill-card"><h3>Unreal</h3></div>
+      <div class="skill-card"><h3>AR/VR</h3></div>
+      <div class="skill-card"><h3>Figma</h3></div>
+      <div class="skill-card"><h3>React</h3></div>
+      <div class="skill-card"><h3>HTML</h3></div>
+      <div class="skill-card"><h3>CSS</h3></div>
+      <div class="skill-card"><h3>JavaScript</h3></div>
+    </div>
+  </section>
+
+
+  <section id="projects">
+    <h2 style="font-family: 'Times New Roman', Times, serif;">Projects</h2>
+    <div class="projects-grid">
+      <div class="lux-card" data-id="fashion"><h3 >Titanic VR Exploration</h3><p></p></div>
+      <div class="lux-card" data-id="hotel"><h3>VR Realm</h3><p>5-star hotel booking portal with elegant animations and smooth UX.</p></div>
+      <div class="lux-card" data-id="interior"><h3>FireFighter</h3><p>Minimalist, visually rich showcase for interior design with scroll reveal.</p></div>
+      <div class="lux-card" data-id="vrshowroom"><h3>TBA</h3><p>Immersive virtual reality showroom for product demonstration.</p></div>
+    </div>
+
+    <!-- Output Section -->
+    <div class="project-output" id="project-output">
+      <iframe id="output-video-frame" allowfullscreen></iframe>
+      <h3 id="output-title"></h3>
+      <p id="output-description"></p>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact</h2>
+    <p>If you’d like to collaborate or hire me, feel free to reach out.</p>
+    <div class="contact-info">
+      <p>Email: Kishorekumarvelan@gmail.com</p>
+      <p>Phone: +91 9715886607</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Kishorekumar. All Rights Reserved.
+  </footer>
+
+  <script>
+    // Scroll animation
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.section, .lux-card, .skill-card').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+
+      // Active nav link
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav a');
+      sections.forEach(sec => {
+        const top = window.scrollY + 150;
+        const offset = sec.offsetTop;
+        const height = sec.offsetHeight;
+        const id = sec.getAttribute('id');
+        if (top >= offset && top < offset + height) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            document.querySelector(`nav a[href="#${id}"]`).classList.add('active');
+          });
+        }
+      });
+    });
+  </script>
+  <script>
+    const projectData = {
+      fashion: {
+        title: 'Titanic Hijacked',
+        video: 'https://www.youtube.com/embed/1CfCFoy3-wc?si=eAIHZcbxMZX-SV_L' ,
+        description: 'Titanic Hijacked is a third-person adventure game developed using the Unity engine. It reimagines the iconic RMS Titanic as a futuristic, AI-powered cruise ship on its maiden VR voyage. During the journey, the ship is hijacked by an unknown faction, throwing passengers into chaos. Players step into the role of a mysterious passenger determined to uncover the truth. The gameplay blends stealth, combat, and puzzle-solving as players navigate sabotaged environments and rescue civilians. Unity’s powerful rendering, physics, and lighting systems enhance the immersive experience. Real-time cutscenes and spatial audio bring tension and realism to every moment. The game is designed as both an entertainment product and a showcase of narrative-driven, interactive VR gameplay.'
+      },
+      hotel: {
+        title: 'VR Realm',
+        video: 'https://www.youtube.com/embed/4tHpqgZBreQ?si=fIpn5u3kda9T5Gi8',
+        description: 'Elegant booking portal for high-end hotels and spas.'
+      },
+      interior: {
+        title: 'Interior Design Portfolio',
+        video: 'https://www.youtube.com/embed/xkhlfFzW8fA',
+        description: 'Visually rich interior design showcase using scroll animations.'
+      },
+      vrshowroom: {
+        title: 'VR Showroom',
+        video: 'https://www.youtube.com/embed/z6UxLtZiE_c',
+        description: 'Immersive VR experience to showcase real-world products in a digital showroom.'
+      }
+    };
+
+    document.querySelectorAll('.lux-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
+        const data = projectData[id];
+
+        document.getElementById('output-video-frame').src = data.video;
+        document.getElementById('output-title').textContent = data.title;
+        document.getElementById('output-description').textContent = data.description;
+        document.getElementById('project-output').style.display = 'block';
+
+        // Scroll to output
+        document.getElementById('project-output').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+  
+</body>
+</html>
